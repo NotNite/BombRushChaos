@@ -1,4 +1,5 @@
 using System;
+using BombRushChaos.Events;
 using Reptile;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,8 +44,13 @@ public class ChasingPolo : MonoBehaviour {
 
     private void CoreUpdate() {
         const float killRange = 0.5f;
-        const float speed = 5f;
+        const float minSpeed = 5f;
+        const float maxSpeed = 10f;
 
+        if (Plugin.RunningEvent is not PoloEvent poloEvent) return;
+        var progress = Plugin.EventTime / poloEvent.Duration;
+        var speed = Mathf.Lerp(minSpeed, maxSpeed, progress);
+        
         var player = this.GetPlayer();
         if (player == null) return;
 

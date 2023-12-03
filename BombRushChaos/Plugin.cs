@@ -25,11 +25,12 @@ public class Plugin : BaseUnityPlugin {
 
     public static Dictionary<Type, int> Weights = new() {
         {typeof(GoFastEvent), WeightConstants.PlayerModification},
-        {typeof(HoldComboEvent), WeightConstants.PlayerModification},
+        {typeof(HoldComboEvent), WeightConstants.Risky},
         {typeof(InstantHeatEvent), WeightConstants.UnforgivingAndRare},
         {typeof(NoBoostEvent), WeightConstants.PlayerModification},
         {typeof(PeaceAndQuietEvent), WeightConstants.Harmless},
-        {typeof(PoloEvent), WeightConstants.Risky}
+        {typeof(PoloEvent), WeightConstants.Risky},
+        {typeof(SwappedInputsEvent), WeightConstants.PlayerModification}
     };
 
     private void Awake() {

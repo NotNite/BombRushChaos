@@ -14,4 +14,13 @@ public class PlayerPatch {
             __result *= 10f;
         }
     }
+
+    [HarmonyPrefix]
+    [HarmonyPatch("SetInputs")]
+    public static void SetInputs(ref UserInputHandler.InputBuffer inputBuffer) {
+        if (Plugin.RunningEvent is SwappedInputsEvent) {
+            inputBuffer.moveAxisX = -inputBuffer.moveAxisX;
+            inputBuffer.moveAxisY = -inputBuffer.moveAxisY;
+        }
+    }
 }
